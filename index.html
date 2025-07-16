@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>사진퍼즐 / Photo Puzzle</title>
+    <meta name="description" content="사진을 업로드하고 휴대폰을 흔들어 퍼즐을 풀어보세요! Upload photos and solve puzzles by shaking your phone!">
+    <meta name="theme-color" content="#4f46e5">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="icons/icon-192x192.png">
+    <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Upload Screen -->
+        <div id="upload-screen" class="screen active">
+            <div class="container">
+                <h1>📸 <span data-i18n="title">사진퍼즐 / Photo Puzzle</span></h1>
+                <p data-i18n="description">사진을 업로드하고 휴대폰을 흔들어 퍼즐을 풀어보세요!<br>Upload photos and solve puzzles by shaking your phone!</p>
+                
+                <div class="privacy-notice">
+                    <p data-i18n="privacy">🔒 개인정보 보호: 업로드된 사진은 서버에 저장되지 않으며, 오직 로컬에서만 처리됩니다.<br>Privacy: Uploaded photos are not saved on the server and are processed locally only.</p>
+                </div>
+                
+                <div class="upload-area" id="upload-area">
+                    <div class="upload-content">
+                        <div class="upload-icon">📁</div>
+                        <p data-i18n="upload-tap">사진을 업로드하려면 탭하세요<br>Tap to upload a photo</p>
+                        <p class="upload-hint" data-i18n="upload-drag">또는 드래그 앤 드롭<br>or drag and drop</p>
+                    </div>
+                    <input type="file" id="file-input" accept="image/*" hidden>
+                </div>
+
+                <div class="difficulty-selector">
+                    <h3 data-i18n="difficulty">난이도 선택 / Choose Difficulty:</h3>
+                    <div class="difficulty-options">
+                        <button class="difficulty-btn active" data-difficulty="easy" data-i18n="easy">쉬움 (3x3) / Easy (3x3)</button>
+                        <button class="difficulty-btn" data-difficulty="medium" data-i18n="medium">보통 (4x4) / Medium (4x4)</button>
+                        <button class="difficulty-btn" data-difficulty="hard" data-i18n="hard">어려움 (5x5) / Hard (5x5)</button>
+                    </div>
+                </div>
+
+                <button id="start-game" class="btn btn-primary" disabled data-i18n="start-game">퍼즐 시작 / Start Puzzle</button>
+            </div>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="game-screen" class="screen">
+            <div class="game-header">
+                <button id="back-btn" class="btn btn-secondary" data-i18n="back">← 뒤로 / Back</button>
+                <div class="game-info">
+                    <span id="moves" data-i18n="moves">이동: 0 / Moves: 0</span>
+                    <span id="timer" data-i18n="timer">시간: 00:00 / Time: 00:00</span>
+                </div>
+            </div>
+
+            <div class="puzzle-container">
+                <div id="puzzle-board"></div>
+            </div>
+
+            <div class="game-controls">
+                <button id="shuffle-btn" class="btn btn-primary" data-i18n="shake-shuffle">흔들어 섞기 / Shake to Shuffle</button>
+                <button id="solve-btn" class="btn btn-secondary" data-i18n="show-solution">해답 보기 / Show Solution</button>
+            </div>
+        </div>
+
+        <!-- Victory Screen -->
+        <div id="victory-screen" class="screen">
+            <div class="container">
+                <div class="victory-content">
+                    <h1>🎉 <span data-i18n="victory">퍼즐 완성! / Puzzle Complete!</span></h1>
+                    <div class="stats">
+                        <p data-i18n="final-moves">이동: <span id="final-moves">0</span> / Moves: <span id="final-moves-en">0</span></p>
+                        <p data-i18n="final-time">시간: <span id="final-time">00:00</span> / Time: <span id="final-time-en">00:00</span></p>
+                    </div>
+                    <div class="confetti-container" id="confetti"></div>
+                    <div class="victory-buttons">
+                        <button id="share-btn" class="btn btn-primary" data-i18n="share-puzzle">퍼즐 공유 / Share Puzzle</button>
+                        <button id="new-game-btn" class="btn btn-secondary" data-i18n="new-game">새 게임 / New Game</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <script src="puzzle.js"></script>
+    <script src="pwa.js"></script>
+</body>
+</html> 
